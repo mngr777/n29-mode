@@ -144,3 +144,5 @@
   (ca-life-init-vars)
   (ca-life-init-test)
   (use-local-map ca-life-mode-map))
+
+(provide 'ca-life)

@@ -129,3 +129,5 @@
   (ca-gkl-init-vars 149)
   (ca-gkl-init-test 0.48)
   (use-local-map ca-gkl-mode-map))
+
+(provide 'ca-gkl)

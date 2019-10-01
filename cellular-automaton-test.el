@@ -54,3 +54,5 @@ Use (cell . state) cons cell to set particular state."
           (:e . [1 0])
           (:s . [0 -1])
           (:w . [-1 0])))
+
+(provide 'cellular-automaton-test)
