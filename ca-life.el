@@ -13,10 +13,6 @@
 (define-key ca-life-mode-map (kbd "a") 'ca-life-edit-set-alive-at-pos)
 (define-key ca-life-mode-map (kbd "d") 'ca-life-edit-set-dead-at-pos)
 (define-key ca-life-mode-map (kbd "<SPC>") 'ca-step)
-;; (define-key ca-life-mode-map (kbd "C-c a") 'ca-life-edit-set-alive-at-pos)
-;; (define-key ca-life-mode-map (kbd "C-c d") 'ca-life-edit-set-dead-at-pos)
-;; (define-key ca-life-mode-map (kbd "C-c n") 'ca-step)
-
 
 (setq ca-life-char-dead (string-to-char "."))
 (setq ca-life-char-alive (string-to-char "*"))

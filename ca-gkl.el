@@ -25,9 +25,6 @@
 (define-key ca-gkl-mode-map (kbd "a") 'ca-gkl-edit-set-alive-at-pos)
 (define-key ca-gkl-mode-map (kbd "d") 'ca-gkl-edit-set-dead-at-pos)
 (define-key ca-gkl-mode-map (kbd "<SPC>") 'ca-step)
-;; (define-key ca-gkl-mode-map (kbd "C-c a") 'ca-gkl-edit-set-alive-at-pos)
-;; (define-key ca-gkl-mode-map (kbd "C-c d") 'ca-gkl-edit-set-dead-at-pos)
-;; (define-key ca-gkl-mode-map (kbd "C-c <SPC>") 'ca-step)
 
 ;; `cellular-automaton' FUNCTION PARAMETERS {{
 (defun ca-gkl-show-state-table (state-table)
@@ -54,6 +51,31 @@
     (if (> counter 1)
         ca-gkl-state-excited
       ca-gkl-state-quiescent)))
+;; }}
+
+;; EDITING {{
+(defun ca-gkl-edit-set-alive-at-pos ()
+  (interactive)
+  (when (ca-gkl-edit-set-state-at-pos ca-gkl-state-excited)
+    (insert-char ca-gkl-char-excited 1)
+    (delete-char 1)
+    (backward-char)))
+
+(defun ca-gkl-edit-set-dead-at-pos ()
+  (interactive)
+  (when (ca-gkl-edit-set-state-at-pos ca-gkl-state-quiescent)
+    (insert-char ca-gkl-char-quiescent 1)
+    (delete-char 1)
+    (backward-char)))
+
+(defun ca-gkl-edit-set-state-at-pos (state)
+  (if (equal (+ 1 (line-number-at-pos)) ca-gkl-current-line)
+      (let* ((state-table (ca-get-state-table))
+             (cell (ca-state-table-coords-to-cell state-table
+                                                  (vector (current-column)))))
+        (ca-set-cell-state state-table cell state)
+        t)
+    nil))
 ;; }}
 
 (defun ca-gkl-goto-current-line ()
