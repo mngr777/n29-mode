@@ -91,7 +91,7 @@
 (defun ca-gkl-init-buffer ()
   (erase-buffer))
 
-(defun ca-gkl-init-test (p)
+(defun ca-gkl-init (p)
   (ca-set-state-table (ca-make-state-table))
   (let ((state-table (ca-get-state-table))
         (init-state (ca-gkl-generate-init-state p)))
@@ -143,13 +143,14 @@
   "ca-gkl"
   "Gaks-Kurdiumov-Levin cellular automaton.")
 
-(defun ca-gkl ()
-  (interactive)
-  (ca-gkl-mode)
+(defun ca-gkl (density)
+  (interactive (let ((number (string-to-number (read-string "Density: "))))
+                 (list (min 1 (max 0 number)))))
   (switch-to-buffer "*ca-gkl*")
+  (ca-gkl-mode)
   (ca-gkl-init-buffer)
   (ca-gkl-init-vars 149)
-  (ca-gkl-init-test 0.48)
+  (ca-gkl-init density)
   (use-local-map ca-gkl-mode-map))
 
 (provide 'ca-gkl)

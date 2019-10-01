@@ -134,8 +134,8 @@
 
 (defun ca-life ()
   (interactive)
-  (ca-life-mode)
   (switch-to-buffer "*ca-life*")
+  (ca-life-mode)
   (ca-life-init-buffer)
   (ca-life-init-vars)
   (ca-life-init-test)
